@@ -22,6 +22,11 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
+import com.android.browser.preferences.GeneralPreferencesFragment;
+import com.android.browser.preferences.PrivacySecurityPreferencesFragment;
+import com.android.browser.preferences.AccessibilityPreferencesFragment;
+import com.android.browser.preferences.AdvancedPreferencesFragment;
+import com.android.browser.preferences.LabPreferencesFragment;
 import com.android.browser.preferences.BandwidthPreferencesFragment;
 import com.android.browser.preferences.DebugPreferencesFragment;
 
@@ -96,6 +101,17 @@ public class BrowserPreferencesPage extends PreferenceActivity {
         String url = getIntent().getStringExtra(CURRENT_PAGE);
         intent.putExtra(CURRENT_PAGE, url);
         return intent;
+    }
+
+    @Override
+    protected boolean isValidFragment(String fragmentName) {
+        return GeneralPreferencesFragment.class.getName().equals(fragmentName)
+            || PrivacySecurityPreferencesFragment.class.getName().equals(fragmentName)
+            || AccessibilityPreferencesFragment.class.getName().equals(fragmentName)
+            || AdvancedPreferencesFragment.class.getName().equals(fragmentName)
+            || LabPreferencesFragment.class.getName().equals(fragmentName)
+            || BandwidthPreferencesFragment.class.getName().equals(fragmentName)
+            || DebugPreferencesFragment.class.getName().equals(fragmentName);
     }
 
 }
